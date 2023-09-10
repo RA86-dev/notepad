@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About:</title>
+    <style>
+                @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+        body {
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:rgb(24, 24, 24);
+            color:white;
+        }
+        button {
+            background-color: white;
+            border-color: white;
+            border-radius: none;
+
+            font-family:'Roboto Mono',monospace;
+        }
+        select {
+            font-family:monospace;
+        }
+    </style>
+    <script>
+        function goBackInHistory() {
+            window.location.href = "index.html?username=AboutUser"
+        }
+    </script>
+</head>
+<body>
+    <h1>About:</h1>
+    <p>Notepad is a very simple, tasked notepad that anyone can use. This program is free, and it contains a taskbar, editing and printing, and so on.</p>
+    <p>Currently the latest version of Notepad is 1.0.5.</p>
+    <a  onclick="goBackInHistory()">Visit Notepad.</a>
+</body>
+</html>

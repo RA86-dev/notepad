@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notepad</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <style>
+        body {font-family: Verdana;
+            background-color:rgb(24, 24, 24);
+            color:white;}
+        button {font-family:Verdana, Geneva, Tahoma, sans-serif;border-radius:12px;border-width:0;background-color: rgb(55, 55, 55);padding:12px;
+  
+            
+        }
+        button:hover {
+            background-color:rgb(94, 135, 216);
+            cursor:pointer;
+        }
+        input {
+            border-radius:12px;
+            border-width:2.5px;
+            width:200px;
+            border-color:rgb(239, 242, 242);
+            height: 25px;
+            
+        }
+        </style>
+    <script>
+        function confirmAndGoToPage(dif) {
+            let username = document.getElementById('username').value;
+             
+            if (username != "") {
+                if (username == " ") {
+                    window.location.href = "index.html?ref=noUserNameInput"
+                }
+                window.location.href = "index.html?username= " +username ; 
+
+            } else {
+                console.warn('Error: NoUserNameInput')
+                window.location.href = "index.html?ref=noUserNameInput";
+
+
+
+                
+
+
+            }
+                
+            
+
+        }
+
+        function activateTourMode() {
+            alert('Notepad 1.0.6 is a simple Free, notepad that saves through your localstorage.')
+            alert('When this note is exited, you will be redirected to the tour_mode.');
+            let username = document.getElementById('username').value;
+            window.location.href = "index.html?username=" + username + "&ref=tour";
+
+
+        }
+        function debug_acess_file() {
+            window.location.href = "debug-acess-all-file.html"
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <p>Before you can acess the Notepad, Please give a username for this session.</p><br>
+    <b>Username:</b><br><br>
+    <input type="text" placeholder="Put Your Username..." id="username" required><br>
+   
+    <button onclick="confirmAndGoToPage()">Confirm and Go To Page.</button>
+    <br>
+    <br>
+    <br>
+    <button onclick="activateTourMode()">New to Notepad? Click Here</button>
+    <p>For advanced mode, edit the url to have ?username=[YOUR USERNAME HERE] when you click confirm and go to page. (ex: index.html?username = [YOURUSERNAMEHERE]</p>
+    <br>
+    <br>
+    <button onclick="debug_acess_file()">Acess All Files [DEBUGGING MODE]</button>
+</body>
+</html>

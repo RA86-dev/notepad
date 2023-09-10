@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Notepad🗒️</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap');
+        body {
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:rgb(24, 24, 24);
+            color:white;
+            
+        }
+        button {
+            background-color: white;
+            border-color: white;
+            border-radius: none;
+
+            font-family:'Roboto Mono',monospace;
+        }
+        select {
+            font-family:monospace;
+        }
+        #taskbar {
+            position: fixed;
+            
+            bottom: 0;
+            width: 100%;
+            background-color: #f0f0f057;
+            padding: 10px 0;
+            text-align: center;
+        }
+        #taskbar button {
+            margin: 0 5px;
+            
+        }
+        button:hover {
+            cursor:pointer;
+            border-color:gainsboro;
+        }
+        /* Dark Mode Styles */
+body.dark-mode {
+    background-color: #333;
+    color: #eee;
+}
+
+        
+        
+    </style>
+    <script>
+    let ranInitialization = false;
+
+        function toggleDarkMode() {
+    
+    document.body.style.color = "#eee";
+    document.body.style.backgroundColor = "#333";
+}
+function disableDarkMode() {
+    document.body.style.color = "black";
+    document.body.style.backgroundColor = "white";
+}
+        function getParameterByName(name) {
+    const url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+    const results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+// Add this code inside your <script> tag
+    document.addEventListener("DOMContentLoaded", function () {
+    gsap.from("h1", { opacity: 0, y: -20, duration: 1 });
+});
+// Add this code inside your <script> tag
+    function animateButtonClick(button) {
+    gsap.from(button, { scale: 0.8, duration: 0.2, onComplete: () => {
+        gsap.to(button, { scale: 1, duration: 0.2 });
+    
+    } });
+}
+
+function tourVersionROV() {
+    console.log("Tour Edition.")
+    let r = confirm('Do you want to read the Instructions before you use this program?')
+    if (r == true) {
+        loadTour()
+    } 
+
+
+}
+        if (navigator.onLine == false) {
+            alert('No Internet. Please reconnect to internet.')
+            let p = document.getElementById('internetNon').textContent = "No Internet/Offline."
+        }
+        
+
+        function editPage() {
+            document.body.contentEditable = 'true';
+            document.designMode = 'on';
+        }
+        function stopEditing() {
+            document.body.contentEditable = 'false';
+            document.designMode = 'off';
+        }
+        
+        
+        function quitPage() {
+            console.log('Quit Page');
+            window.location.href = "about:blank#blocked";
+        }
+        function openPag() {
+            let newWin = window.open("#", "nullPage", "width=1000,height=1000");
+            newWin.document.body.innerHTML = "This is a popup window.";
+        }
+        function chooseThisFont() {
+            let fontValue = document.getElementById('selectFont').value;
+            document.body.style.fontFamily = fontValue;
+        }
+        function insertImage() {
+            let imageUrl = prompt("Enter the URL of the image:");
+            let height = prompt("Enter Height (px): ");
+            let width = prompt("Enter Width (px): ");
+            let r = document.createElement("img")
+            r.src = imageUrl;
+            r.height = height;
+            r.width = width;
+            document.body.appendChild(r);
+        }
+        // Add this code inside your <script> tag
+function animateButtonClick(button) {
+    gsap.from(button, { scale: 0.8, duration: 0.2, onComplete: () => {
+        gsap.to(button, { scale: 1, duration: 0.2 });
+    } });
+}
+
+
+
+
+        function insertLink() {
+    let linkUrl = prompt("Enter the URL of the link:");
+    let textToDisplay = prompt("Display Text (can contain custom html):");
+    
+    let dp = document.createElement("a");  // Corrected this line
+    dp.href = linkUrl;
+    dp.innerHTML = textToDisplay;  // Corrected 'InnerHTML' to 'innerHTML'
+    
+    document.body.appendChild(dp);
+}
+function insertIFrame() {
+    
+    let i = prompt('URL for the iFrame (Can be youtube): ')
+    let w = prompt('Width:')
+    let h = prompt('Height:')
+    let a = document.createElement("iframe")
+    a.src = i;
+    a.height = h;
+    a.width = w;
+    document.body.appendChild(a);
+    console.log('Inserted Code.');
+    
+    
+}
+function about() {
+    window.location.href = "about.html";
+}
+function searchAndReplace() {
+    const searchText = prompt("Enter text to search:");
+    const replaceText = prompt("Enter text to replace with:");
+    
+    if (searchText) {
+        const content = document.body.innerHTML;
+        const newContent = content.replace(new RegExp(searchText, 'g'), replaceText);
+        document.body.innerHTML = newContent;
+    }
+}
+function insertDateTime() {
+    const currentDate = new Date();
+    const formattedDateTime = currentDate.toLocaleString(); // Customize the format as needed
+    
+    // Insert the formatted date and time at the cursor's location
+    let inp = document.createElement("p")
+    inp.textContent = formattedDateTime;
+    document.body.appendChild(inp)
+}
+function init() {
+    console.log('Notepad')
+    console.log('||||||||')
+    console.log('Loading...')
+    console.log('Loaded!')
+    console.warn('No internet can affect performance on animations and cause issues. This program can be used, but errors with come up often.')
+    console.log('||||||||')
+    ranInitialization = true;
+
+    if (navigator.onLine == false) {
+            alert('No Internet.This means that any animation features (excluding the main text) will be disabled.')
+            let p = document.getElementById('internetNon').textContent = "No Internet/Offline."
+
+        } else {
+            console.warn('Do not dis-connect from any internet source.')
+            function onLoad() {
+        let username = getParameterByName('username');
+        document.getElementById('usernameText').innerHTML = "<b>Hello, " + username + ".</b>";
+ 
+
+        }
+        onLoad()
+        }
+
+    
+}
+if (ranInitialization == false) {
+    init()
+}
+
+
+
+
+function pasteCustomCode() {
+    let i = prompt('Input your code: (Shift + Enter to Move a line...)')
+    console.log('Received Input..')
+    let i2 = document.createElement("code")
+    console.log('Created Element!')
+    i2.textContent = i;
+    i2.style.backgroundColor = "black";
+    i2.style.color = "white";
+        document.body.appendChild(i2);
+
+}let z = getParameterByName('ref')
+if (z == "tour") {
+    alert('This is the Pro Version Tour Edition.')
+    alert('Try it out over time!')
+    tourVersionROV()
+}
+else if (z == "noUserNameInput") {
+    let noUsernameConfirm = confirm('You have not generated a username for yourself. Would you like to be redirected back?');
+    if (noUsernameConfirm == true) {
+        window.location.href = "login_username.html";
+
+    } else if (noUsernameConfirm == false) {
+        alert('Note: Without a Username, It will display "Hello,Null." ')
+        
+    }
+}
+function loadTour() {
+    window.location.href = "tour.pdf";
+}
+let error = getParameterByName("error");
+if (error != "") {
+    if (error == "401") {
+        alert('Error 401: Unauthorized.')
+    }
+    if (error == "404") {
+        alert('Error 404: The Page is not defined.')
+    } else {
+        let r = getParameterByName("error_message");
+        alert("Error Code: " + error + "\n Error Message: " + r)
+    }
+
+    
+}
+function changeUsername() {
+    window.location.href = "login_username.html";
+}
+function printThisPage() {
+    document.getElementById("taskbar").style.visibility = "none";
+    window.print()
+    document.getElementById("taskbar").style.visibility = "100%";
+}
+function saveContent() {
+    const content = document.body.innerHTML;
+    let key = prompt('Make a key to acess your data:');
+    alert("Remember your key!");
+    localStorage.setItem(key, content);
+    console.log('Fetched Key')
+    console.log('Saving Content was a sucess.')
+}
+function loadContent() {
+    let key_input = prompt('What is that key?')
+    const savedContent = localStorage.getItem(key_input);
+    
+    if (savedContent) {
+        document.body.innerHTML = savedContent;
+        alert('Sucessfully Updated Page')
+    } else {
+        alert('No data was saved in this document.')
+        throw new Error("No Data was stored in this document.")
+    }
+}function configureBackground() {
+    let backgroundColor = document.getElementById('backgroundColor').value;
+
+    document.body.style.backgroundColor = backgroundColor;
+}
+function draw() {
+    let r = document.createElement("iframe")
+    let height = prompt('Height: ');
+    let width = prompt('Width:')
+    r.height = height;
+    r.src = "/iframe.html"
+    r.width = width;
+    console.log('Created Element r.')
+    document.body.appendChild(r)
+}
+function simpleNotepad() {
+window.location.href = "simple-notepad.html";
+}
+
+    </script>
+</head>
+<body onload="init()">
+    <div id="taskbar" contenteditable="false">
+        <sub id="usernameText">Hello,</sub>
+        <sub id="internetNoInternetConnection">Taskbar 1.0</sub><br>
+        <button onclick="animateButtonClick(this); editPage();">Edit📝</button>
+        <button onclick="animateButtonClick(this); stopEditing();">Stop Editing▶️</button>
+
+        
+        <button onclick="animateButtonClick(this); insertImage()">Insert Image🖻</button>
+        <button onclick="animateButtonClick(this);insertLink()">Insert Link🔗</button>
+        
+        <button onclick="animateButtonClick(this);pasteCustomCode()"> Paste Code</button>
+        <select id="selectFont">
+            <option value="monospace">Monospace</option>
+            <option value="sans-serif">Sans-serif</option>
+            <option value="cursive">Cursive</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Arial">Arial</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Trebuchet MS">Trebuchet MS</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option  value="Roboto Mono,monospace">Roboto Mono</option>
+            <option  value="Gloria Hallelujah, cursive">Gloria Hellelujiah</option>
+            <option   value="Indie Flower, cursive">Indie Flower
+
+            </option>
+
+        </select>
+        <button onclick="animateButtonClick(this);chooseThisFont()">Choose Font</button>
+        <button onclick="animateButtonClick(this);draw()">Draw Canvas (iframed)</button>
+        <button onclick="animateButtonClick(this);insertIFrame()">Insert iFrame</button>
+        <button onclick="animateButtonClick(this);openPag()">Open Popup</button>
+        <button onclick="animateButtonClick(this);about()">About Notepad</button>
+        <button onclick="animateButtonClick(this);changeUsername()">Change Your Username</button>
+        <button onclick="animateButtonClick(this);saveContent()">Save This Page</button>
+        <button onclick="animateButtonClick(this);loadContent()">Load Content</button>
+        <button onclick="animateButtonClick(this);toggleDarkMode()">Toggle Dark Mode</button>
+        <button onclick="animateButtonClick(this);searchAndReplace()">Search & Replace</button>
+        <button onclick="animateButtonClick(this);insertDateTime()">Insert Time</button>
+        <button onclick="animateButtonClick(this);disableDarkMode()">Disable Dark Mode/Reset Background</button>
+        
+        <input type="color" id="backgroundColor">
+        <button onclick="animateButtonClick(this);configureBackground();">Configure Background</button>
+        <button onclick="animateButtonClick(this);loadTour()">Tour PDF</button>
+        <button onclick="animateButtonClick(this); simpleNotepad()">Use Simple Notepad</button>
+        
+
+    </div>
+    <h1>Notepad 1.0.6</h1>
+    <p>Write your notes here...</p>
+    <p><b>Tutorial</b><br>1. Control + U = Underline <br> 2. Control I = Italic, <br>3. Control B = Bold, <br> 4. Control V and C, for copy and paste. <br> 5. Control Z - Undo</p>
+</body>
+</html>

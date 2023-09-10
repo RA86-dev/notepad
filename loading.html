@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading</title>
+
+    <style>
+        body {
+            cursor: progress;
+            background-color: rgb(24, 24, 24);
+            color: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            display: flex;
+            justify-content: center;
+            
+            
+            align-items: center;
+            height: 100vh; 
+            margin: 0; 
+        }
+        p {
+            text-align: center;
+            background-color: black;
+        }
+
+        .loader {
+            border: 16px solid #7e7e7e;
+            border-radius: 50%;
+            border-right: 16px solid rgb(58, 58, 58);
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script>
+        
+
+        function runChange() {
+            const changeId = document.getElementById('change');
+            changeId.innerHTML = "Loading... <br>Making Changes For you...";
+        }
+                function refreshCode() {
+            // sends the user to create a username before redirecting to the main page.
+        const loadFile = true;
+        const ifTrue = localStorage.setItem('loadFile',loadFile);
+         
+        window.location.href = "login_username.html";
+        setTimeout(runChange,250)
+
+        }
+        setTimeout(refreshCode,5000)
+        const localStorageRefresh  = localStorage.getItem('loadFile')
+    </script>
+</head>
+<body>
+    <p id="change">Loading....<br>Making Changes For You...<br>
+        <div class="loader"></div>
+    </p>
+</body>
+</html>
